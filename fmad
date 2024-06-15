@@ -1,0 +1,49 @@
+class HallBooking:
+    def __init__(self, name, date, start_time, end_time):
+        self.name = name
+        self.date = date
+        self.start_time = start_time
+        self.end_time = end_time
+
+    def __str__(self):
+        return f"Booking for {self.name} on {self.date} from {self.start_time} to {self.end_time}"
+
+class HallBookingApp:
+    def __init__(self):
+        self.bookings = []
+
+    def book_hall(self):
+        name = input("Enter your name: ")
+        date = input("Enter booking date (YYYY-MM-DD): ")
+        start_time = input("Enter start time (HH:MM): ")
+        end_time = input("Enter end time (HH:MM): ")
+
+        booking = HallBooking(name, date, start_time, end_time)
+        self.bookings.append(booking)
+        print("Hall booked successfully!")
+
+    def show_bookings(self):
+        if not self.bookings:
+            print("No bookings available.")
+        else:
+            for booking in self.bookings:
+                print(booking)
+
+    def run(self):
+        while True:
+            print("\n1. Book Hall\n2. Show Bookings\n3. Exit")
+            choice = input("Enter your choice: ")
+
+            if choice == '1':
+                self.book_hall()
+            elif choice == '2':
+                self.show_bookings()
+            elif choice == '3':
+                print("Exiting the Hall Booking App.")
+                break
+            else:
+                print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    app = HallBookingApp()
+    app.run()
